@@ -1,9 +1,8 @@
 [tool.poetry]
-name = "aana_app"
+name = "aana_app_project"
 version = "0.1.0"
 description = "project_description"
-url="https://github.com/author_name/project_urlname/"
-authors = ["project_author"]
+authors = ["author_name"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
