@@ -22,6 +22,25 @@ poetry install
 
 See [Tutorial](https://github.com/mobiusml/aana_sdk/blob/main/docs/tutorial.md) for more information on how to build your application.
 
+## Project structure
+
+```
+aana_app_project/             | top level source code directory for the project
+├── config/                   | various configs, including settings, deployments and endpoints
+│   ├── endpoints.py          | list of endpoints to deploy
+│   ├── deployments.py        | list of deployments (models) to deploy
+│   └── settings.py           | app settings
+├── core/                     | core models and functionality
+│   ├── models/               | data models
+│   └── prompts/              | prompt templates for LLMs
+├── deployments/              | custom deployments
+├── endpoints/                | endpoint classes for the app
+├── exceptions/               | custom exception classes
+├── utils/                    | various utility functionality
+└── app.py                    | main application file
+```
+
+
 ## Installation
 
 To install the project, follow these steps:
