@@ -1,7 +1,7 @@
 from aana.sdk import AanaSDK
 
-from aana_app_project.deployments import deployments
-from aana_app_project.endpoints import endpoints
+from aana_app_project.configs.deployments import deployments
+from aana_app_project.configs.endpoints import endpoints
 
 aana_app = AanaSDK(name="aana_app_project")
 

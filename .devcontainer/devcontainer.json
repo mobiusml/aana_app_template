@@ -21,7 +21,6 @@
     "securityOpt": [
         "seccomp=unconfined"
     ],
-    "postCreateCommand": "sh ${containerWorkspaceFolder}/install.sh  --with=dev",
     "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
     "customizations": {
         "vscode": {
