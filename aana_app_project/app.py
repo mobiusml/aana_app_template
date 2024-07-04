@@ -3,7 +3,7 @@ from aana.sdk import AanaSDK
 from aana_app_project.deployments import deployments
 from aana_app_project.endpoints import endpoints
 
-aana_app = AanaSDK(name="aana_app")
+aana_app = AanaSDK(name="aana_app_project")
 
 for deployment in deployments:
     aana_app.register_deployment(**deployment)

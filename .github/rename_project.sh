@@ -29,3 +29,5 @@ mv $original_name $name
 
 # This command runs only once on GHA!
 rm -rf .github/template.yml
+rm -rf .github/workflows/rename_project.yaml
+rm -rf .github/rename_project.sh
