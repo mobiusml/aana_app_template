@@ -7,7 +7,7 @@ def get_prompt_template(name: str) -> Template:
     Use this function to load a prompt templates for LLMs:
 
     ```python
-    from aana_app_project.prompts.loader import get_prompt_template
+    from aana_app_project.core.prompts.loader import get_prompt_template
 
     template = get_prompt_template("test")
     prompt = template.render(your_variable="your_value")
