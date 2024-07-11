@@ -47,20 +47,7 @@ To install the project, follow these steps:
 
 1. Clone the repository.
 
-2. Install additional libraries.
-
-```bash
-apt update && apt install -y libgl1
-```
-> **🗒️ Note**
->
-> For optimal performance, you should also install [PyTorch](https://pytorch.org/get-started/locally/) version >=2.1 appropriate for your system. You can continue directly to the next step, but it will install a default version that may not make optimal use of your system's resources, for example, a GPU or even some SIMD operations. Therefore we recommend choosing your PyTorch package carefully and installing it manually.
-
-> **🗒️ Note**
->
-> Some models use Flash Attention. Install Flash Attention library for better performance. See [flash attention installation instructions](https://github.com/Dao-AILab/flash-attention?tab=readme-ov-file#installation-and-features) for more details and supported GPUs.
-
-3. Install the package with poetry.
+2. Install the package with Poetry.
 
 The project is managed with [Poetry](https://python-poetry.org/docs/). See the [Poetry installation instructions](https://python-poetry.org/docs/#installation) on how to install it on your system.
 
@@ -70,7 +57,28 @@ It will install the package and all dependencies in a virtual environment.
 poetry install
 ```
 
-4. Run the app.
+3. Install additional libraries.
+
+For optimal performance, you should also install [PyTorch](https://pytorch.org/get-started/locally/) version >=2.1 appropriate for your system. You can continue directly to the next step, but it will install a default version that may not make optimal use of your system's resources, for example, a GPU or even some SIMD operations. Therefore we recommend choosing your PyTorch package carefully and installing it manually.
+
+Some models use Flash Attention. Install Flash Attention library for better performance. See [flash attention installation instructions](https://github.com/Dao-AILab/flash-attention?tab=readme-ov-file#installation-and-features) for more details and supported GPUs.
+
+
+4. Activate the Poetry environment.
+
+To activate the Poetry environment, run the following command:
+
+```bash
+poetry shell
+```
+
+Alternatively, you can run commands in the Poetry environment by prefixing them with `poetry run`. For example:
+
+```bash
+poetry run aana deploy aana_app_project.app:aana_app
+```
+
+5. Run the app.
 
 ```bash
 aana deploy aana_app_project.app:aana_app

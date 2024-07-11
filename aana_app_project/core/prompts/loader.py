@@ -20,6 +20,6 @@ def get_prompt_template(name: str) -> Template:
         Template: The prompt template.
     """
     env = Environment(loader=PackageLoader(
-        "aana_app_project", "core", "prompts"))
+        "aana_app_project.core", "prompts"))
     template = env.get_template(f"{name}.j2")
     return template
