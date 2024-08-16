@@ -114,37 +114,44 @@ For example, if your application has `/summary` endpoint that accepts videos, yo
 curl -X POST http://127.0.0.1:8000/summary -Fbody='{"video":{"url":"https://www.youtube.com/watch?v=VhJFyyukAzA"}}'
 ```
 
-## Running within Docker
+## Running with Docker
 
-To run the project using Docker, you will find both a Dockerfile and a Docker Compose configuration file in the repository. These resources allow you to run the project seamlessly. You have the option to launch it using Docker Compose for a more streamlined approach, or you can opt to use Docker directly. Here’s how you can do both:
+We provide a docker-compose configuration to run the application in a Docker container.
 
-### Deploying via docker-compose
+Requirements:
 
-```bash
-CUDA_VISIBLE_DEVICES=0 docker-compose up
-```
+- Docker Engine >= 26.1.0
+- Docker Compose >= 1.29.2
+- NVIDIA Driver >= 525.60.13
 
-When your application requires a Graphics Processing Unit (GPU) to run, it's essential to specify the index of the GPU you want to use. This is crucial because most systems have multiple GPUs, and you need to instruct the system which one to utilize. To achieve this, you can use the `CUDA_VISIBLE_DEVICES` environment variable.
-
-The docker-compose configuration will deploy a PostgreSQL instance alongside the application and establish a connection between them. If you already have a database set up elsewhere, you can modify the docker-compose configuration by removing PostgreSQL and specifying the PostgreSQL address using environment variables. The application will be accessible at `http://localhost:8000` in the host server and the PostgreSQL will be accessible via port 15430.
-You can check the [docker-compose config](./docker-compose.yaml) to see all available variables you can set for running the application.
-
-### Deploying via docker
-
-To deploy the application by docker directly follow these steps:
-
-1. Build the docker image by running:
+To run the application, simply run the following command:
 
 ```bash
-docker build --no-cache -t aana_app_project:latest .
+docker-compose up
 ```
 
-2. Run the the image:
-```bash
-export DB_CONFIG='{"datastore_type":"postgresql","datastore_config":{"host":<PG_HOST>,"port":<PG_PORT>,"user":<PGUSER>,"password":<PG_PASSWORD>,"database":<PG_DB>}}'
-docker run --rm -it -v ~/.cache:/root/.cache -e CUDA_VISIBLE_DEVICES=0 -e DB_CONFIG=$DB_CONFIG -p 8000:8000 aana_app_project:latest
-```
+The application will be accessible at `http://localhost:8000` in the host server.
 
-The Dockerfile is currently configured to utilize the base image `nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04`. This particular image integrates CUDA and cuDNN, making it well-suited for applications that require GPU acceleration and deep learning functionalities. However, if you're planning to deploy the container on a server where the installed NVIDIA driver is incompatible with this specific image, you may need to modify the base image. It's essential to choose a version that aligns with the capabilities of the existing driver on your server to ensure optimal performance and functionality. Always verify the compatibility of the CUDA version with your server’s GPU driver to avoid any issues during deployment.
 
-To ensure that your application runs correctly in the Docker container, you need to specify the third-party libraries you want to use in the Dockerfile. This involves installing the necessary libraries using the RUN command, which executes a command in the container and commits the results.
+> **⚠️ Warning**
+>
+> If your applications requires GPU to run, you need to specify which GPU to use.
+>
+> The applications will detect the available GPU automatically but you need to make sure that `CUDA_VISIBLE_DEVICES` is set correctly.
+> 
+> Sometimes `CUDA_VISIBLE_DEVICES` is set to an empty string and the application will not be able to detect the GPU. Use `unset CUDA_VISIBLE_DEVICES` to unset the variable.
+> 
+> You can also set the `CUDA_VISIBLE_DEVICES` environment variable to the GPU index you want to use: `CUDA_VISIBLE_DEVICES=0 docker-compose up`.
+
+
+> **💡Tip**
+>
+> Some models use Flash Attention for better performance. You can set the build argument `INSTALL_FLASH_ATTENTION` to `true` to install Flash Attention. 
+>
+> ```bash
+> INSTALL_FLASH_ATTENTION=true docker-compose build
+> ```
+>
+> After building the image, you can use `docker-compose up` command to run the application.
+>
+> You can also set the `INSTALL_FLASH_ATTENTION` environment variable to `true` in the `docker-compose.yaml` file.
