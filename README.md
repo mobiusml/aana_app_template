@@ -130,7 +130,7 @@ To run the application, simply run the following command:
 docker-compose up
 ```
 
-The application will be accessible at `http://localhost:8000` in the host server.
+The application will be accessible at `http://localhost:8000` on the host server.
 
 
 > **⚠️ Warning**
