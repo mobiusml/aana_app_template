@@ -20,7 +20,7 @@ The project template uses [Poetry](https://python-poetry.org/) for dependency ma
 poetry install
 ```
 
-See [Tutorial](https://github.com/mobiusml/aana_sdk/blob/main/docs/tutorial.md) for more information on how to build your application.
+See [Tutorial](https://mobiusml.github.io/aana_sdk/pages/tutorial/) for more information on how to build your application.
 
 ## Project structure
 
